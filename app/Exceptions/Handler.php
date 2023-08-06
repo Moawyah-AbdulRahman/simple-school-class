@@ -43,6 +43,13 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        $this->renderable(function (BusinessException $ex, $request) {
+            return response([
+                'message' => $ex->getMessage(),
+                'code' =>    $ex->getHttpResponse()
+            ], $ex->getHttpResponse());
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });
