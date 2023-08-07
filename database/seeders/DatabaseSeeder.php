@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Student;
+use App\Models\StudentStudyClass;
+use App\Models\StudyClass;
 use App\Models\Teacher;
 use Illuminate\Database\Seeder;
 
@@ -31,6 +33,35 @@ class DatabaseSeeder extends Seeder
         Student::create([
             'first_name' => 'Sami',
             'last_name' => 'Hasan'
+        ]);
+
+        StudyClass::create([
+            'subject_name' => 'maths',
+            'semester' => 1,
+            'year' => 2020,
+            'teacher_id' => 1
+        ]);
+        
+        StudyClass::create([
+            'subject_name' => 'science',
+            'semester' => 1,
+            'year' => 2021,
+            'teacher_id' => 2
+        ]);
+
+        StudentStudyClass::create([
+            'student_id' => 1,
+            'study_class_id' => 1
+        ]);
+
+        StudentStudyClass::create([
+            'student_id' => 1,
+            'study_class_id' => 2
+        ]);
+
+        StudentStudyClass::create([
+            'student_id' => 2,
+            'study_class_id' =>1
         ]);
     }
 }

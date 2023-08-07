@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Models\Student;
+use App\Models\StudyClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mockery\Generator\StringManipulation\Pass\ClassNamePass;
@@ -10,6 +12,13 @@ use Mockery\Generator\StringManipulation\Pass\ClassNamePass;
 
 Route::get('/health', function() {
     return 'Ok';
+});
+
+Route::get('test/{id}', function($id) {
+
+    return Student::join('student_study_classes', 'students.id', '=', 'student_study_classes.student_id')
+        ->where('student_study_classes.study_class_id', $id)
+        ->get();
 });
 
 Route::get('/teacher', [TeacherController::class, 'findAll']);
