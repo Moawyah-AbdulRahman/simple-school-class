@@ -23,6 +23,8 @@ Route::post('/login', [AuthController::class, 'login']) ;
 Route::post('/register', [AuthController::class, 'register']) ;
 
 Route::middleware([JWTAuthenticationMiddleware::class])->group( function() {
+    Route::get('/me', [AuthController::class, 'me']) ;
+
     Route::get('/teacher', [TeacherController::class, 'findAll']);
     Route::get('/teacher/{id}', [TeacherController::class, 'findOne']);
     

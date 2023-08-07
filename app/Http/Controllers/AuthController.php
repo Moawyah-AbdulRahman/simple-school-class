@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\NewUserResource;
+use App\Http\Resources\UserDerailsResource;
 use App\Http\Services\Auth\AuthService;
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller {
 
@@ -43,8 +39,10 @@ class AuthController extends Controller {
         ]);
 
         $entity = $this->authService->register($validatedRequest);
-       
-        return NewUserResource::make($entity);
+        return UserDerailsResource::make($entity);
     }
 
+    public function me(Request $request) {
+        return UserDerailsResource::make($this->authService->details());
+    }
 }

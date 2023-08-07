@@ -18,7 +18,7 @@ class JWTAuthenticationMiddleware {
     public function handle(Request $request, Closure $next) {
         $token = explode(' ', $request->header('Authorization'))[1];
 
-        try{
+        try {
             if(JWTAuth::setToken($token)->authenticate()) {
                 $response = $next($request);
     
@@ -27,7 +27,7 @@ class JWTAuthenticationMiddleware {
     
                 return $response;
             }
-        } catch( \Tymon\JWTAuth\Exceptions\JWTException $e) {
+        } catch(\Tymon\JWTAuth\Exceptions\JWTException $e) {
             throw new BusinessException('Bad Credentials.', 401);
         }
     }   

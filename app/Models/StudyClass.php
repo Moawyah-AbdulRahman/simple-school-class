@@ -10,7 +10,7 @@ class StudyClass extends Model
     use HasFactory;
 
     public function teacher() {
-        return $this->belongsTo(Teacher::class)->withDefault();
+        return $this->belongsTo(Teacher::class);
     }
     
     public function studentStudyClasses() {

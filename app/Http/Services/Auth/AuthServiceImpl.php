@@ -3,6 +3,7 @@
 namespace App\Http\Services\Auth;
 
 use App\Exceptions\BusinessException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Services\Auth\AuthService;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -37,8 +38,21 @@ class AuthServiceImpl implements AuthService {
         $entity->user_id = $user->id;
 
         $entity->save();
+        $entity->type = $validatedRequest['type'];
 
         return $entity;
     }
 
+    public function details() {
+        $payload = JWTAuth::payload();
+        $type = $payload['user_type'];
+        $result = null;
+        if($type === 'student'){
+            $result = Student::where('user_id', $payload['sub'])->first();
+        } else if ($type === 'teacher'){
+            $result = Teacher::where('user_id', $payload['sub'])->first();
+        }
+        $result->type = $type;
+        return $result;
+    }
 }
