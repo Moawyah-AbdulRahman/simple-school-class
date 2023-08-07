@@ -15,7 +15,7 @@ class Student extends Model
         'phone_number'
     ];
 
-    public function studentStudyClass() {
+    public function studentStudyClasses() {
         return $this->hasMany(StudentStudyClass::class);
     }
     

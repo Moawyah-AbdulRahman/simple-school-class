@@ -5,6 +5,7 @@ namespace App\Http\Services\Auth;
 use App\Exceptions\BusinessException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Services\Auth\AuthService;
+use App\Http\Services\Utils\UserFactory;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;

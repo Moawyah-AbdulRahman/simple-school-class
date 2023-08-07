@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Services\Utils\UserFactory;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -47,14 +48,8 @@ class User extends Authenticatable implements JWTSubject
      * @return array
      */
     public function getJWTCustomClaims() {
-        $type = null;
-        if ($this->teacher !== null) {
-            $type = 'teacher';
-        }else if ($this->student !== null) {
-            $type = 'student';
-        }
         return [
-            'user_type' => $type
+            'user_type' => $this->getType($this)
         ];
     }
 
@@ -64,5 +59,13 @@ class User extends Authenticatable implements JWTSubject
 
     public function teacher() {
         return $this->hasOne(Teacher::class);
+    }
+    
+    public function getType() {
+        if ($this->teacher !== null) {
+            return 'teacher';
+        }else if ($this->student !== null) {
+            return 'student';
+        }
     }
 }

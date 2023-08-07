@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudyClassController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Middleware\JWTAuthenticationMiddleware;
 use App\Models\Student;
@@ -31,6 +32,7 @@ Route::middleware([JWTAuthenticationMiddleware::class])->group( function() {
     Route::get('/student', [StudentController::class, 'findAll']);
     Route::get('/student/{id}', [StudentController::class, 'findOne']);
     
+    Route::get('/class/me', [StudyClassController::class, 'findMine']);
     
     Route::get('/list-routes', function () {
         $routes = collect(Route::getRoutes())->map(function ($route) {
