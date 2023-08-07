@@ -19,20 +19,24 @@ class DatabaseSeeder extends Seeder
     {
         Teacher::create([
             'first_name' => 'Ahmad',
-            'last_name' => 'Mohsen'
+            'last_name' => 'Mohsen',
+            'phone_number' => '0561234167'
         ]);
         Teacher::create([
             'first_name' => 'Sami',
-            'last_name' => 'Hasan'
+            'last_name' => 'Hasan',
+            'phone_number' => '0561234537'
         ]);
 
         Student::create([
-            'first_name' => 'Ahmad',
-            'last_name' => 'Mohsen'
+            'first_name' => 'Mohammed',
+            'last_name' => 'Mohsen',
+            'phone_number' => '0561234967'
         ]);
         Student::create([
-            'first_name' => 'Sami',
-            'last_name' => 'Hasan'
+            'first_name' => 'Khaled',
+            'last_name' => 'Hasan',
+            'phone_number' => '0561234507'
         ]);
 
         StudyClass::create([
@@ -61,7 +65,7 @@ class DatabaseSeeder extends Seeder
 
         StudentStudyClass::create([
             'student_id' => 2,
-            'study_class_id' =>1
+            'study_class_id' => 1
         ]);
     }
 }

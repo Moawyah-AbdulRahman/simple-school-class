@@ -11,6 +11,11 @@ class Teacher extends Model
 
     protected $fillable = [
         'first_name',
-        'last_name'
+        'last_name',
+        'phone_number'
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
